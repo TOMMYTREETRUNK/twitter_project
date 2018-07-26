@@ -1,18 +1,20 @@
 <p id="notice"><%= notice %></p>
 
-<div>	
-<%= image_tag @tweet.user.avatar.url %>
+<center>
+	<div>	
+		<%= image_tag @tweet.user.avatar.url %>
 	
-</div>
-<p>
-  <strong>Message:</strong>
-  <%= @tweet.message %>
-</p>
+	</div>
+			<p>
+  		<strong>Message:</strong>
+ 				 <%= @tweet.message %>
+			</p>
 
-<p>
-  <strong>User:</strong>
-  @<%= link_to @tweet.user.username, show_user_path(id: @tweet.user.id) %>
-</p>
+			<p>
+  		<strong>User:</strong>
+  				@<%= link_to @tweet.user.username, show_user_path(id: @tweet.user.id) %>
+			</p>
+</center>
 
 <% if user_signed_in? && current_user.id == @tweet.user_id %>
 <%= link_to 'Edit', edit_tweet_path(@tweet) %> |

@@ -1,0 +1,9 @@
+<h3>	Here's what people are saying <strong><%= @tag.phrase %></strong>:</h3>
+
+	<div class="row">	
+	 <% @tag.tweets.each do |tweet|
+   %>
+  <div class="well"></div>
+  	<p><%= time_ago_in_words(created_at) %> <%= tweet.user.username %> said...</p>
+ 	  <p><%= tweet.message.html_safe_html %></p>
+ </div>

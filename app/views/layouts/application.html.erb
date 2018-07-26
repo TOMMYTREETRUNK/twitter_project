@@ -9,7 +9,7 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
+
     <!-- app/views/layouts/application.html.erb -->
 <body>
   <nav class="navbar navbar-default">
@@ -47,10 +47,63 @@
       </div>
     </div>
   </nav>
+
+
+    <div class="row">
+    <div class="col-lg-3">
   
-</body>
-    <div class="container">
+      <div class="well">
+        <p>This is where our stats go</p>
+      </div>
+    </div>
+
+    <div class="col-lg-6 well"> 
       <%= yield %>
     </div>
+
+<div class="row">
+    <div class="col-lg-3">
+    
+      <div class="well">
+        <p>This is where what's trending go</p>
+      </div>
+        </div>
+     </div>
+    </div>
+  </div>
+    <!-- <div class="container">
+      <div class="row">
+        <div class="panel panel-default">
+          <div class="panel-body">
+           <div class="col-xs-3">
+               <p>Stats</p>
+           </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+           <div class="col-xs-6"> 
+               <p>Feed</p>
+           </div>
+          </div>
+        </div>
+
+        <div class="panel panel-default">
+          <div class="panel-body">
+           <div class="col-xs-3">
+               <p>Trending</p>
+           </div>
+          </div>
+        </div>
+      </div>
+        
+   
+
+          <%= yield %>
+        </div>
+      </div>
+    </div> -->
+
   </body>
 </html>

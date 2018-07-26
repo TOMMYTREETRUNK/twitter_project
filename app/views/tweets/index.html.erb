@@ -14,7 +14,7 @@
   <tbody>
     <% @tweets.each do |tweet| %>
       <tr>
-        <td><%= tweet.message %></td>
+        <td><%= tweet.message.html_safe %></td>
         <td>@<%= tweet.user.username %></td>
         <td><%= image_tag tweet.user.avatar.url, class: "thumd-pic" %></td>
         <td><%= link_to 'Show', tweet %></td>
