@@ -18,35 +18,55 @@ private
 
   def link_check
       check = false
-     if self.message.include? "http://" 
+     if self.message.include?("http://") || self.message.include?("https://") || self.message.include?("www") 
          check = true
-     elsif self.message.include? "https://"
-         check = true    
-  end	
-    
+     # elsif self.message.include? "https://"
+     #     check = true    
+     end	
+
+     puts "-----------------------"
+     puts check, self.message
+      puts "-----------------------"
+
+
+
       if check == true
     	arr = self.message.split
-    	index = arr.map{ |x| x.include? "http"}.index(true)
-        self.link = arr[index]
-        if arr[index].length > 23
-    	    arr[index] = "#{arr[index][0..19]}..."	
+
+        if self.message.include?("http")
+    	   index = arr.map{ |x| x.include? "http"}.index(true)
+          self.link = arr[index]
+
+        elsif self.message.include? ("www")
+          index = arr.map{ |x| x.include? "www"}.index(true)
+          self.link = arr[index]
+          if arr[index].length > 23
+      	    arr[index] = "#{arr[index][0..19]}..."	
+          end
+      				
+          self.message = arr.join(" ")
         end
-    				
-        self.message = arr.join(" ")
       end
+  end
 
   def apply_link
-  		arr = self.message.split
-  		index = arr.map { |x| x.include? "http" }.index(true)
-  		url = arr[index]
+
+    if self.message.include?("http")
+      arr = self.message.split
+      index = arr.map{|x| x.include?"http"}.index(true)
+
+    elsif self.message.include?("www")
+      arr = self.message.split
+      index = arr.map{|x| x.include?"www"}.index(true)
+
+    end 
+  		
 
   	if index
-		url = arr[index]
-		arr[index] = "<a href='#{self.link}' target='_blank'>#{url}</a>"
+		  url = arr[index]
+		  arr[index] = "<a href='#{self.link}' target='_blank'>#{url}</a>"
+      self.message = arr.join(" ")
 		end
-
-			self.message = arr.join(" ")
-		end
+	end
  end	
-end
 

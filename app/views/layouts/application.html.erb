@@ -28,6 +28,7 @@
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav">
           <li><%= link_to "Compose New Tweet", new_tweet_path %></li>
+          <li><%link_to "All Users", all_users_path %></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
           <% if user_signed_in? %>
@@ -41,33 +42,45 @@
                 <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
                 <li><%= link_to "Sign Out", destroy_user_session_path, method: :delete %></li>
               </ul>
-            </li>
-          <% end %>
-        </ul>
-      </div>
-    </div>
-  </nav>
+             </li>
+            <% end %>
+           </ul>
+         </div>
+       </div>
+       </nav>
 
 
     <div class="row">
     <div class="col-lg-3">
   
       <div class="well">
-        <p>This is where our stats go</p>
+        <div class="user-stats">
+          <% if user_signed_in? %>
+          <%= image_tag current_user.avatar.url, class: "show-pic" %>
+          <h5><%= link_to current_user.username, show_user_path(id: current_user.id) %></h5>
+          <p>Name: <%= link_to current_user.name, show_user_path(id: current_user.id) %></p>
+          <p>Home: <%= current_user.location %></p>
+          <p>About: <%= current_user.bio %></p>
+          <p>Following: <%= link_to current_user.following.count, following_path(id: current_user.id) %> | Followers: <%= link_to get_followers(current_user.id), followers_path(id: current_user.id) %></p>
+
+          <% else %>
+          <h5>Sign in to be a part of the conversation!</h5>
+          <% end %>
+        </div>
       </div>
+
     </div>
 
     <div class="col-lg-6 well"> 
       <%= yield %>
     </div>
 
-<div class="row">
+    <div class="row">
     <div class="col-lg-3">
     
       <div class="well">
         <p>This is where what's trending go</p>
-      </div>
-        </div>
+      
      </div>
     </div>
   </div>
@@ -100,7 +113,7 @@
         
    
 
-          <%= yield %>
+          
         </div>
       </div>
     </div> -->
